@@ -15,6 +15,8 @@ CREATE TABLE IF NOT EXISTS products (
   name TEXT NOT NULL,
   brand TEXT NOT NULL,
   variant TEXT,
+  -- Optional normalized search key to accelerate autocomplete.
+  search_key TEXT,
   base_unit_type TEXT NOT NULL CHECK (base_unit_type IN ('weight', 'volume', 'count')),
   canonical_unit TEXT NOT NULL CHECK (canonical_unit IN ('g', 'ml', 'each')),
   created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
@@ -63,8 +65,6 @@ CREATE INDEX IF NOT EXISTS idx_packs_product_id
 CREATE INDEX IF NOT EXISTS idx_products_brand_name_variant
   ON products(brand, name, variant);
 
--- Optional normalized search key to accelerate autocomplete.
-ALTER TABLE products ADD COLUMN search_key TEXT;
 CREATE INDEX IF NOT EXISTS idx_products_search_key ON products(search_key);
 
 -- NOTE:
