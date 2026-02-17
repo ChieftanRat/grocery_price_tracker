@@ -1,0 +1,9 @@
+{
+  "name": "Grocery Price Tracker",
+  "short_name": "Groceries",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#14532d",
+  "icons": []
+}
